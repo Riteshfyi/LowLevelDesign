@@ -7,14 +7,3 @@ public class Movie {
         this.duration = duration;
     }
 }
-
-//it will have duration,it will have
-//show == screen
-//it has to have a name
-//it will have a duration
-
-//why did i use a movie class?
-//easly append changes, and other flexibilities
-
-
-

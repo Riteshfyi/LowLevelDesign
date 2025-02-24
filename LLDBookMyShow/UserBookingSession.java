@@ -2,51 +2,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserBookingSession {
-    //seatManager
-    //Booking Manager
-    //Payment Manager
-    private BookingManager bookingManager;
-    //show to select hogya
-    private Show show
-    List<Seat> selectedSeats;
-    //dependency inversion has to be followed, not optional
+    private List<Seat> selectedSeats;
+    private final BookingManager bookingManager;
 
-    public UserBookingSession(Show show,BookingManager bookingManager){
-        this.show = show;
+    public UserBookingSession(BookingManager bookingManager) {
         this.bookingManager = bookingManager;
-        List<Seat> selectedSeats = new ArrayList<>();
-        Start();
+        this.selectedSeats = new ArrayList<>();
     }
 
-    public void Start(){
-        //INTERFACE
-
-
+    public List<Seat> getSelectedSeats() {
+        return selectedSeats;
     }
 
-    //add seat
-    //remove Seat
-    //do i need a explicit Cart ?
-//better readability
-
-    public void addSeat(int seatNo){
-        selectedSeats.add(show.getSeat(seatNo));
+    public void addSeat(int seatNo) {
+        bookingManager.addSeatToSession(this, seatNo);
     }
 
-    public void removeSeat(int seatNo){
-       selectedSeats.remove(show.getSeat(seatNo));
+    public void removeSeat(int seatNo) {
+        bookingManager.removeSeatFromSession(this, seatNo);
     }
 
-    //payment karwao using booking manager
-
-
-    //seatUpadtes karwao using booking manager
-
-
-
-
-
-    //jaise hi ye start hoga ek objecgt banega aur end hoga
-
-
+    public void processPayment(PaymentManager paymentManager) {
+        bookingManager.processPayment(this, paymentManager);
+    }
 }

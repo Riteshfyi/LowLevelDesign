@@ -1,27 +1,26 @@
-import java.util.List;
 
 public class SeatManager {
-    private List<Seat> selectedSeats;
+    private Show show;
 
-    public SeatManager(List<Seat> selectedSeats){
-        this.selectedSeats = selectedSeats;
-    };
+    public SeatManager(Show show){this.show = show;};
 
-    public synchronized void  updateSeats(seatStatus newStatus){
-        for(Seat seat : selectedSeats){
-            seat.updateStatus(newStatus);
-        }
+    public synchronized void  updateSeatStatus(Seat seat,seatStatus newStatus){
+            seat.setStatus(newStatus);
     }
 
-    public boolean verifySeats(){
-       for(Seat seat : selectedSeats){
-           if(seat.getStatus() != seatStatus.EMPTY)return false;
-       }
-       //throw custom error
-       return true;
-    };
+    public boolean verifySeat(Seat seat){
+         if(seat.getStatus() != seatStatus.BUSY)return false;
+         return true;
+    }
 
-    public void updateSelectedSeats(List<Seat> selectedSeats){
-        this.selectedSeats = selectedSeats;
-    };
+    public boolean SeatCheck(Seat seat){
+        if(seat.getStatus() != seatStatus.EMPTY)return false;
+        return true;
+    }
+
+    public Seat getSeat(int seatNo){
+        return show.getSeat(seatNo);
+    }
+    //seat manager should have access to show
+
 }

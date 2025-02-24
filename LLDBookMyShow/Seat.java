@@ -1,21 +1,21 @@
 public class Seat {
     private int seatNumber;
     private seatStatus status;
-    public Seat(){};
-    //setter
-    public void updateStatus(seatStatus newStatus){
-        this.status = newStatus;
+
+    public Seat(int seatNumber) {
+        this.seatNumber = seatNumber;
+        this.status = seatStatus.EMPTY; // Default status
     }
-    //getter
-    public seatStatus getStatus(){
-        return this.status;
+
+    public seatStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(seatStatus newStatus) {
+        this.status = newStatus;
     }
 
     public int getSeatNumber() {
         return seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber){
-        this.seatNumber = seatNumber;
     }
 }
