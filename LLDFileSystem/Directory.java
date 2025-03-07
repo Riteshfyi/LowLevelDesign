@@ -1,22 +1,26 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Directory implements FileComponent{
     private String directoryName;
-    private List<FileComponent> subdir;
+    public Map<String,FileComponent> subdir;
     public Directory(String directoryName){
         this.directoryName = directoryName;
-        subdir = new ArrayList<>();
+        subdir = new HashMap<>();
     }
     public void add(FileComponent fileComponent){
-        subdir.add(fileComponent);
+        subdir.put(fileComponent.getName(),fileComponent);
+    }
+
+    public FileComponent getFile(String fileName){
+        if(subdir.containsKey(fileName))return subdir.get(fileName);
+        return null;
+    }
+    public String getName(){
+        return directoryName;
     }
     @Override
-    public void ls(){
-        System.out.println("Directory Name : " + directoryName);
-
-        for(FileComponent fileComponent : subdir){
-            fileComponent.ls();
-        }
+    public FileComponent getChild(String fileName){
+        if(subdir.containsKey(fileName))return subdir.get(fileName);
+        return null;
     }
 }
