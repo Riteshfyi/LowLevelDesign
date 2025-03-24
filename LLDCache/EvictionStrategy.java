@@ -1,8 +1,8 @@
-public interface EvictionStrategy {
-    public Object getKey();
+public interface EvictionStrategy <E>{
+    public E getKey();
 
-    public void updateKey(Object Key);
+    public void updateKey(E Key);
 
-    public void removeKey(Object Key);
+    public void removeKey(E Key);
 
 }

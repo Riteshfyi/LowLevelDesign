@@ -1,11 +1,11 @@
 import java.util.HashMap;
 
-public class LRUStrategy implements EvictionStrategy{
+public class LRUStrategy<E> implements EvictionStrategy<E>{
     class Node{
-        Object nodeKey;
+        E nodeKey;
         Node prev;
         Node next;
-        public Node(Object Key){
+        public Node(E Key){
             nodeKey = Key;
             prev = null;
             next = null;
@@ -17,7 +17,7 @@ public class LRUStrategy implements EvictionStrategy{
             this.next = next;
         }
     }
-    private HashMap<Object,Node> mp;
+    private HashMap<E,Node> mp;
     private Node head;
     private Node tail;
 
@@ -30,13 +30,13 @@ public class LRUStrategy implements EvictionStrategy{
     }
 
     @Override
-    public Object getKey() {
+    public E getKey() {
         if(head.next == tail)return null;
         return head.next.nodeKey;
     }
 
     @Override
-    public void updateKey(Object Key){
+    public void updateKey(E Key){
         //this node was used
         //set it to the end
         if(!mp.containsKey(Key))mp.put(Key,new Node(Key));
@@ -45,7 +45,7 @@ public class LRUStrategy implements EvictionStrategy{
         insert(node);
     }
     @Override
-    public void removeKey(Object Key){
+    public void removeKey(E Key){
         Node node = mp.get(Key);
         remove(node);
         mp.remove(Key);
