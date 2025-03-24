@@ -1,16 +1,14 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SubscriberHandler {
-    List<Subscriber> subscribers;
-    int NotficationIndex;
+    CopyOnWriteArrayList<Subscriber> subscribers;
 
     String topicName;
     public SubscriberHandler(String topicName){
         this.topicName = topicName;
-        subscribers = new ArrayList<>();
-        NotficationIndex = 0;
+        subscribers = new  CopyOnWriteArrayList<>();
     }
+
 
 
     public void notifyAllSubs(Message message,int notificationOffset){
@@ -23,9 +21,9 @@ public class SubscriberHandler {
         if(subscribers.contains(newSubscriber))return;
         subscribers.add(newSubscriber);
     }
-    public void removeSubscriber(Subscriber newSubscriber){
-        if(!subscribers.contains(newSubscriber))return;
-        subscribers.remove(newSubscriber);
+    public void removeSubscriber(Subscriber subscriber){
+        if(!subscribers.contains(subscriber))return;
+        subscribers.remove(subscriber);
     }
 
     public Subscriber getSubscriber(String subscriberID){
@@ -38,6 +36,7 @@ public class SubscriberHandler {
     }
 
     public void pushSubscriber(Message message, Subscriber subscriber){
+        if(message == null || subscriber == null)return;
         subscriber.update(message);
         subscriber.incrementOffset();
     }

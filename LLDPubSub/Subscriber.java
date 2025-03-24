@@ -5,7 +5,7 @@ public class Subscriber {
     int Offset;
     private PubSubController pubsubcontroller;
 
-    public Subscriber(){subscriberID = UUID.randomUUID().toString();Offset = 0;}
+    public Subscriber(){subscriberID = UUID.randomUUID().toString(); Offset = 0;}
 
     public void resetOffset(int newOffset){Offset = newOffset;}
 

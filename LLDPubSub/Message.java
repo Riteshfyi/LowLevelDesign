@@ -6,10 +6,9 @@ public class Message {
     //a message will have a data,let it be string for right now
     private String description;
     private String messageID;
-    public Message(String  topic,String description){
-        this.topicName = topic;
+    public Message(String  ID,String description){
         this.description = description;
-        messageID = UUID.randomUUID().toString();
+        messageID = ID;
     }
     //should i give id to messages? => wont be used tho
     public String getID(){

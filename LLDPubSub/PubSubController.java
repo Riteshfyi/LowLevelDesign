@@ -1,10 +1,7 @@
 import java.util.HashMap;
 public class PubSubController {
-    //it is an api
+
     HashMap<String,TopicHandler> map;
-    //publish
-    //subscribe
-    //getOffsetElement
 
     public PubSubController(){
         map = new HashMap<>();

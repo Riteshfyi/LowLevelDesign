@@ -12,6 +12,7 @@ public class MessageHandler {
         messages.add(message);
     }
     public Message getMessageAtOffset(int offset){
+       if(offset >= messages.size())return null;
         return messages.get(offset);
     }
     public int getOffset(){
