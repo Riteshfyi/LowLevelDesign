@@ -1,12 +1,11 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HashMapStorage<Key, Value> implements Storage<Key, Value> {
-    private HashMap<Key, Value> map;
+    private ConcurrentHashMap<Key, Value> map;
     private int capacity;
 
     public HashMapStorage(int capacity) {
-        this.map = new HashMap<>();
+        this.map = new ConcurrentHashMap<>();
         this.capacity = capacity;
     }
 

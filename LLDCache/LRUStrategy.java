@@ -30,13 +30,13 @@ public class LRUStrategy<E> implements EvictionStrategy<E>{
     }
 
     @Override
-    public E getKey() {
+    public synchronized E getKey() {
         if(head.next == tail)return null;
         return head.next.nodeKey;
     }
 
     @Override
-    public void updateKey(E Key){
+    public synchronized void updateKey(E Key){
         //this node was used
         //set it to the end
         if(!mp.containsKey(Key))mp.put(Key,new Node(Key));
@@ -45,7 +45,7 @@ public class LRUStrategy<E> implements EvictionStrategy<E>{
         insert(node);
     }
     @Override
-    public void removeKey(E Key){
+    public synchronized void removeKey(E Key){
         Node node = mp.get(Key);
         remove(node);
         mp.remove(Key);
